@@ -1,5 +1,5 @@
 import React from "react";
-
+import heroImage from "../../assets/images/hero-login.png";
 export function GuestLayout({ children, heroPanel }) {
   return (
     <div className="min-h-screen bg-white flex">
@@ -16,7 +16,7 @@ export function GuestLayout({ children, heroPanel }) {
               </p>
               {/* Using generated hero image */}
               <div className="w-full aspect-[4/3] rounded-2xl flex items-center justify-center shadow-lg overflow-hidden relative">
-                <img src="/src/assets/images/hero-login.png" alt="TOEFL Preparation" className="object-cover w-full h-full" />
+                <img src={heroImage} alt="TOEFL Preparation" className="object-cover w-full h-full" />
               </div>
             </div>
           </div>
