@@ -1,5 +1,5 @@
 import React from "react";
-import heroImage from "../../assets/images/hero-login.png";
+const heroImage = "https://raw.githubusercontent.com/saripudin14/img/refs/heads/main/Interactive%20Online%20English%20Tutoring%20Session.jpg";
 export function GuestLayout({ children, heroPanel }) {
   return (
     <div className="min-h-screen bg-white flex">

@@ -5,7 +5,7 @@ import { Logo } from "../../../components/ui/Logo";
 import { Button } from "../../../components/ui/Button";
 import { Card } from "../../../components/ui/Card";
 import { CheckCircle2Icon, BookOpenIcon, BarChart3Icon, ShieldCheckIcon } from "lucide-react";
-import heroImage from "../../../assets/images/hero-login.png";
+const heroImage = "https://raw.githubusercontent.com/saripudin14/img/refs/heads/main/Interactive%20Online%20English%20Tutoring%20Session.jpg";
 
 export default function LandingPage() {
   const { isAuthenticated } = useAuth();
