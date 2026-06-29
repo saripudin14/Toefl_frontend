@@ -8,6 +8,7 @@ import { ForbiddenPage } from "../features/auth/pages/ForbiddenPage";
 import { NotFoundPage } from "../features/auth/pages/NotFoundPage";
 
 // Lazy load feature pages
+const LandingPage = React.lazy(() => import("../features/public/pages/LandingPage"));
 const LoginPage = React.lazy(() => import("../features/auth/pages/LoginPage"));
 const RegisterPage = React.lazy(() => import("../features/auth/pages/RegisterPage").then(m => ({ default: m.RegisterPage })));
 const ForgotPasswordPage = React.lazy(() => import("../features/auth/pages/ForgotPasswordPage").then(m => ({ default: m.ForgotPasswordPage })));
@@ -29,8 +30,8 @@ export function AppRoutes() {
       </div>
     }>
       <Routes>
-        {/* Default route redirect to dashboard (which will redirect to login if not auth) */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        {/* Landing Page Route */}
+        <Route path="/" element={<LandingPage />} />
         
         {/* Guest routes */}
         <Route 
