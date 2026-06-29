@@ -99,7 +99,7 @@ export function RegisterPage() {
         {/* Decorative Blue Circle */}
         <div className="absolute -left-32 top-1/4 w-96 h-96 bg-blue-600 rounded-full opacity-10 blur-3xl"></div>
 
-        <div className="w-full max-w-2xl relative z-10">
+        <div className="w-full max-w-md relative z-10">
           <div className="bg-white rounded-xl shadow-sm p-8 md:p-10">
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-slate-900 mb-2">Create Account</h1>

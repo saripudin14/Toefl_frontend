@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "../components/layout/ProtectedRoute";
 import { GuestRoute } from "../components/layout/GuestRoute";
+import { AdminRoute } from "../components/layout/AdminRoute";
 import { AppLayout } from "../components/layout/AppLayout";
 import { ForbiddenPage } from "../features/auth/pages/ForbiddenPage";
 import { NotFoundPage } from "../features/auth/pages/NotFoundPage";
@@ -13,6 +14,12 @@ const ForgotPasswordPage = React.lazy(() => import("../features/auth/pages/Forgo
 const ResetPasswordPage = React.lazy(() => import("../features/auth/pages/ResetPasswordPage").then(m => ({ default: m.ResetPasswordPage })));
 const DashboardPage = React.lazy(() => import("../features/dashboard/pages/DashboardPage"));
 const SettingsPage = React.lazy(() => import("../features/auth/pages/SettingsPage").then(m => ({ default: m.SettingsPage })));
+
+// Admin User Management Pages
+const AdminUsersPage = React.lazy(() => import("../features/users/pages/AdminUsersPage").then(m => ({ default: m.AdminUsersPage })));
+const CreateUserPage = React.lazy(() => import("../features/users/pages/CreateUserPage").then(m => ({ default: m.CreateUserPage })));
+const UserDetailPage = React.lazy(() => import("../features/users/pages/UserDetailPage").then(m => ({ default: m.UserDetailPage })));
+const EditUserPage = React.lazy(() => import("../features/users/pages/EditUserPage").then(m => ({ default: m.EditUserPage })));
 
 export function AppRoutes() {
   return (
@@ -80,6 +87,48 @@ export function AppRoutes() {
                 <SettingsPage />
               </AppLayout>
             </ProtectedRoute>
+          } 
+        />
+
+        {/* Admin Routes */}
+        <Route 
+          path="/admin/users" 
+          element={
+            <AdminRoute>
+              <AppLayout>
+                <AdminUsersPage />
+              </AppLayout>
+            </AdminRoute>
+          } 
+        />
+        <Route 
+          path="/admin/users/new" 
+          element={
+            <AdminRoute>
+              <AppLayout>
+                <CreateUserPage />
+              </AppLayout>
+            </AdminRoute>
+          } 
+        />
+        <Route 
+          path="/admin/users/:id" 
+          element={
+            <AdminRoute>
+              <AppLayout>
+                <UserDetailPage />
+              </AppLayout>
+            </AdminRoute>
+          } 
+        />
+        <Route 
+          path="/admin/users/:id/edit" 
+          element={
+            <AdminRoute>
+              <AppLayout>
+                <EditUserPage />
+              </AppLayout>
+            </AdminRoute>
           } 
         />
         

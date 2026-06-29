@@ -112,6 +112,14 @@ export const NAV_ITEMS = [
     enabled: false,
   },
   {
+    id: 'users',
+    label: 'Manajemen Pengguna',
+    icon: 'Users',
+    path: '/admin/users',
+    enabled: true,
+    adminOnly: true,
+  },
+  {
     id: 'settings',
     label: 'Settings',
     icon: 'Settings',

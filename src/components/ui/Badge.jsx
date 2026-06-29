@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "../../lib/utils";
 import { STATUS_COLORS, ROLE_COLORS, STATUSES } from "../../lib/constants";
 
-export function Badge({ variant = "status", value, className, showDot = false }) {
+export function Badge({ variant = "status", value, className, showDot = false, children }) {
   let colors = { bg: "bg-gray-100", text: "text-gray-800" };
   
   if (variant === "status" && STATUS_COLORS[value]) {

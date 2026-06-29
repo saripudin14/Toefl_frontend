@@ -107,7 +107,24 @@ export async function apiClient(endpoint, { body, ...customConfig } = {}) {
   if (response.ok && data.success) {
     return data;
   } else {
-    const errorMessage = data.responseMessage || ERROR_MESSAGES.SERVER_ERROR;
+    let errorMessage = data.responseMessage || ERROR_MESSAGES.SERVER_ERROR;
+    
+    if (data.responseCode === '0001') {
+      errorMessage = ERROR_MESSAGES.VALIDATION_ERROR;
+    } else if (data.responseCode === '0002') {
+      errorMessage = ERROR_MESSAGES.MISSING_FIELDS;
+    } else if (data.responseCode === '0003') {
+      if (endpoint.includes('/login')) {
+        errorMessage = ERROR_MESSAGES.INVALID_CREDENTIALS;
+      } else {
+        errorMessage = ERROR_MESSAGES.ACCESS_DENIED;
+      }
+    } else if (data.responseCode === '0004') {
+      errorMessage = ERROR_MESSAGES.NOT_FOUND;
+    } else if (data.responseCode === '9999') {
+      errorMessage = ERROR_MESSAGES.SERVER_ERROR;
+    }
+
     throw new ApiError(data.responseCode, errorMessage, data.data);
   }
 }

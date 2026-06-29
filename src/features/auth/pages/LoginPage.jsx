@@ -10,18 +10,17 @@ import { Button } from "../../../components/ui/Button";
 import { Alert } from "../../../components/ui/Alert";
 import { useAuth } from "../auth-context";
 import { useForm } from "../../../hooks/useForm";
-import { ROLE_OPTIONS, ERROR_MESSAGES } from "../../../lib/constants";
+import { ERROR_MESSAGES } from "../../../lib/constants";
 
 export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [authError, setAuthError] = useState("");
 
-  const { values, errors, handleChange, handleSubmit, isSubmitting, setError } = useForm({
+  const { values, errors, handleChange, handleSubmit, isSubmitting, setValues } = useForm({
     initialValues: {
       email: "",
       password: "",
-      role: ROLE_OPTIONS[0].value,
       rememberSession: false,
     },
     validate: (vals) => {
@@ -43,6 +42,7 @@ export default function LoginPage() {
         navigate("/dashboard");
       } catch (error) {
         setAuthError(error.message || ERROR_MESSAGES.INVALID_CREDENTIALS);
+        setValues(prev => ({ ...prev, password: "" }));
       }
     },
   });
@@ -64,14 +64,6 @@ export default function LoginPage() {
         )}
 
         <form onSubmit={handleSubmit} className="w-full space-y-5">
-          <Select
-            label="Access Role"
-            name="role"
-            value={values.role}
-            onChange={handleChange}
-            options={ROLE_OPTIONS}
-          />
-          
           <Input
             label="Email Address"
             name="email"

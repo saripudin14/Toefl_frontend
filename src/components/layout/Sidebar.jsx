@@ -3,12 +3,13 @@ import { NavLink } from "react-router-dom";
 import { cn } from "../../lib/utils";
 import { Logo } from "../ui/Logo";
 import { Button } from "../ui/Button";
-import { NAV_ITEMS } from "../../lib/constants";
+import { NAV_ITEMS, ROLES } from "../../lib/constants";
 import { useAuth } from "../../features/auth/auth-context";
 import * as Icons from "lucide-react";
 
 export function Sidebar({ className, onClose }) {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
+  const isAdmin = user?.roles?.includes(ROLES.ADMIN);
 
   return (
     <aside className={cn("w-64 bg-white border-r border-slate-200 h-screen flex flex-col fixed inset-y-0 left-0 z-40 transition-transform bg-white", className)}>
@@ -21,6 +22,7 @@ export function Sidebar({ className, onClose }) {
       <div className="flex-1 overflow-y-auto py-6 px-4">
         <nav className="space-y-1">
           {NAV_ITEMS.map((item) => {
+            if (item.adminOnly && !isAdmin) return null;
             const Icon = Icons[item.icon];
             
             if (!item.enabled) {
